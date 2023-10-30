@@ -1,2 +1,6 @@
-public class Conjuntos {
+public abstract class Conjuntos extends Main {
+
+
+
+
 }
