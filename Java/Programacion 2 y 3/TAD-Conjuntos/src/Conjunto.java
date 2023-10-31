@@ -76,4 +76,16 @@ public class Conjunto extends Conjuntos{
 
 
     }
+
+    public int getTamanio() {
+        return tamanio;
+    }
+
+    public int getContador() {
+        return contador;
+    }
+
+    public int[] getConj() {
+        return conj;
+    }
 }
