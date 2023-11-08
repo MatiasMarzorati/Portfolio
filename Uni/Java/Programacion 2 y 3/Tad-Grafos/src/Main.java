@@ -6,7 +6,7 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         int cantNodos;
-        Adyacencia A1= null;
+        Adyacencia A1 = null;
         int opcionMenu = 0;
 
         while(opcionMenu != 99){
@@ -24,7 +24,7 @@ public class Main {
 
             switch (opcionMenu) {
                 case 1:
-                    if (!A1.existeMatriz()) {
+                    if (A1 == null) {
                         System.out.println("Ingrese la cantidad de Nodos que tiene la Matriz que intenta cargar");
                         cantNodos = scanner.nextInt();
 
