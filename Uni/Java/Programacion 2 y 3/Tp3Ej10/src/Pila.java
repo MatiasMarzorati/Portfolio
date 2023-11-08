@@ -2,7 +2,7 @@ public class Pila {
     private int tamanoMaximo;
     private Auto[] arregloPila;
     private int cima;
-
+        //toto
     public Pila(int tamano) {
         tamanoMaximo = tamano;
         arregloPila = new Auto[tamanoMaximo];
