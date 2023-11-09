@@ -7,7 +7,7 @@ Desarrollar una implementación en Java que cumpla con los siguientes métodos y
 - Recorrido InOrden del ABB. Imprimir la secuencia del recorrido.
 - Destruir el ABB.
  ***/
-import java.util.Scanner;
+import java.util.Scanner  ;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in); // INICIALIZACION DE SCANNER
