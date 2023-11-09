@@ -1,6 +1,6 @@
 public abstract class Cola {
     // ATRIBUTOS
-    private String nombreCola;
+    private String nombreCola ;
 
     // CONSTRUCTOR
     public Cola(String nombreCola){
