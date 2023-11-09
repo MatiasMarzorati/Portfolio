@@ -5,7 +5,7 @@ Diseñe y construya usted su propia versión del TAD Árbol Binario cumpliendo c
 -Documentar debidamente las líneas de código que por su complejidad así lo requieran.
  ***/
 
-import java.util.Scanner;
+import java.util.Scanner  ;
 
 public class Main {
     public static void main(String[] args) {
