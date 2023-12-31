@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         // INICIALIZACION DE SCANNER
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner  = new Scanner(System.in);
         Tabla t = null;
         // OPCION MENU PRIMER CONJUNTO
         int opcion;
