@@ -1,4 +1,4 @@
-// Paso por referencia JS
+ // Paso por referencia JS
 // Objetos (array) se pasan por referencia
 
 function cambiarValor(parametro){
