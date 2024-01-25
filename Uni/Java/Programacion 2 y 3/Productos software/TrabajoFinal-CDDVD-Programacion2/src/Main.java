@@ -1,4 +1,4 @@
-// Autores: Matteozzi, Marzorati y Monzalvo
+ // Autores: Matteozzi, Marzorati y Monzalvo
 import javax.swing.*;
 
 public class Main {
