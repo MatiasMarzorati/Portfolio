@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 def imprimirGraficoASCII(x, funcionDemanda, funcionOferta, equilibrio):
     # Establecer el máximo valor de la escala
     escalaMaxima = max(max(funcionDemanda(x)), max(funcionOferta(x)))
-
+asdasd
     # Crear la representación
     for valor in range(escalaMaxima + 1):
         linea = ""
