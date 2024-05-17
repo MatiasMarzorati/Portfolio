@@ -6,7 +6,7 @@ def imprimirGraficoASCII(x, funcionDemanda, funcionOferta, equilibrio):
     # Establecer el máximo valor de la escala
     escalaMaxima = max(max(funcionDemanda(x)), max(funcionOferta(x)))
 
-    # Crear la representaciónasd
+    # Crear la representación
     for valor in range(escalaMaxima + 1):
         linea = ""
         for punto in x:
