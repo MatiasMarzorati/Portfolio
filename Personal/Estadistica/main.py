@@ -1,6 +1,12 @@
 def calcularEquilibrio(a,b,c,d):
     equilibrio = (a - c)/ (b+d)
-    return equilibrio
+    print("el equilibrio es: ",equilibrio)
+    deseo2 = 0
+    print("desea imprimir un grafico?"
+          "1- si"
+          "0- no")
+    deseo2 = int(input())
+    return 0
 
 deseo =0
 #inicio del programa
@@ -26,7 +32,10 @@ deseo = int(next())
         c = int(next())
         print("Ingrese en d el numero de eferta con x")
         d = int(next())
-        equilibrio = calcularEquilibrio()
+        equilibrio = calcularEquilibrio(a,b,c,d)
+        print("El equilibrio es de ",equilibrio)
+
+
 
 
 
