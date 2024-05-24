@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-from PIL import Image, ImageTk
 
 
 class PrestamoCalculadora(tk.Tk):
@@ -8,61 +7,52 @@ class PrestamoCalculadora(tk.Tk):
         super().__init__()
 
         self.title("Calculadora de Préstamos")
-        self.geometry("800x600")
-
         self.create_background()
         self.create_widgets()
 
+        # Establecer el tamaño de la ventana después de crearla
+        self.geometry("1000x800")
+
     def create_background(self):
-        self.canvas = tk.Canvas(self, width=800, height=600)
+        self.canvas = tk.Canvas(self, width=1000, height=800, bg="green")
         self.canvas.pack(fill="both", expand=True)
 
-        # Cargar la imagen de fondo
-        self.bg_image = Image.open("ben.jpeg")
-        self.bg_image = self.bg_image.resize((800, 600), Image.LANCZOS)
-        self.bg_photo = ImageTk.PhotoImage(self.bg_image)
-
-        # Colocar la imagen en el canvas
-        self.canvas.create_image(0, 0, image=self.bg_photo, anchor=tk.NW)
-
-    def create_widgets(self):
         # Crear un frame sobre el canvas para los widgets
-        self.widget_frame = tk.Frame(self.canvas, bg="", highlightthickness=0)
+        self.widget_frame = tk.Frame(self.canvas, bg="green", highlightthickness=0)
+
+        # Centrar el frame dentro de la ventana
         self.widget_frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
 
+    def create_widgets(self):
         # Contenedor de entrada
-        input_frame = tk.Frame(self.widget_frame, bg="", highlightthickness=0)
+        input_frame = tk.Frame(self.widget_frame, bg="green", highlightthickness=0)
         input_frame.pack(pady=10)
 
-        tk.Label(input_frame, text="Monto del Préstamo:", font=("Arial", 16), bg="", highlightthickness=0).grid(row=0,
-                                                                                                                column=0,
-                                                                                                                padx=5,
-                                                                                                                pady=5)
-        self.montoPrestamoField = tk.Entry(input_frame, bg="")
+        tk.Label(input_frame, text="Monto del Préstamo:", font=("Arial", 16), bg="green").grid(row=0, column=0,
+                                                                                              padx=5, pady=5)
+        self.montoPrestamoField = tk.Entry(input_frame)
         self.montoPrestamoField.grid(row=0, column=1, padx=5, pady=5)
 
-        tk.Label(input_frame, text="Tasa de Interés Anual (%):", font=("Arial", 16), bg="", highlightthickness=0).grid(
-            row=1, column=0, padx=5, pady=5)
-        self.tasaInteresField = tk.Entry(input_frame, bg="")
+        tk.Label(input_frame, text="Tasa de Interés Anual (%):", font=("Arial", 16), bg="green").grid(row=1, column=0,
+                                                                                                      padx=5, pady=5)
+        self.tasaInteresField = tk.Entry(input_frame)
         self.tasaInteresField.grid(row=1, column=1, padx=5, pady=5)
 
-        tk.Label(input_frame, text="Cantidad de Meses:", font=("Arial", 16), bg="", highlightthickness=0).grid(row=2,
-                                                                                                               column=0,
-                                                                                                               padx=5,
-                                                                                                               pady=5)
-        self.mesesField = tk.Entry(input_frame, bg="")
+        tk.Label(input_frame, text="Cantidad de Meses:", font=("Arial", 16), bg="green").grid(row=2, column=0, padx=5,
+                                                                                              pady=5)
+        self.mesesField = tk.Entry(input_frame)
         self.mesesField.grid(row=2, column=1, padx=5, pady=5)
 
-        calcular_button = tk.Button(input_frame, text="Calcular", font=("Arial", 16, "bold"), bg="#4682B4", fg="white",
+        calcular_button = tk.Button(input_frame, text="Calcular", font=("Arial", 16, "bold"), bg="green", fg="white",
                                     command=self.calcular_prestamo)
         calcular_button.grid(row=3, column=0, columnspan=2, pady=10)
 
-        self.totalInteresesLabel = tk.Label(self.widget_frame, text="Total intereses pagados: 0.00",
-                                            font=("Arial", 16, "bold"), bg="", highlightthickness=0)
+        self.totalInteresesLabel = tk.Label(self, text="Total intereses pagados: 0.00",
+                                            font=("Arial", 16, "bold"), bg="green")
         self.totalInteresesLabel.pack(pady=10)
 
         # Tabla de resultados
-        table_frame = tk.Frame(self.widget_frame, bg="", highlightthickness=0)
+        table_frame = tk.Frame(self.widget_frame, bg="green", highlightthickness=0)
         table_frame.pack(expand=True, fill=tk.BOTH)
 
         columns = ["Mes", "Amortización", "Intereses", "Cuota", "Monto Restante"]
@@ -74,8 +64,8 @@ class PrestamoCalculadora(tk.Tk):
             self.table.column(col, anchor=tk.CENTER)
 
         # Historial de operaciones
-        historial_frame = tk.LabelFrame(self.widget_frame, text="Historial de Operaciones", bg="", font=("Arial", 14),
-                                        highlightthickness=0)
+        historial_frame = tk.LabelFrame(self.widget_frame, text="Historial de Operaciones", bg="green",
+                                        font=("Arial", 14))
         historial_frame.pack(fill="both", expand="yes", padx=10, pady=10)
 
         historial_columns = ["Monto", "Tasa (%)", "Meses", "Total Intereses"]
