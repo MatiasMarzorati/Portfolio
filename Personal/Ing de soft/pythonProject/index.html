@@ -3,10 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Python Web Server</title>
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .counter {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            background: #f4f4f4;
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            display: flex;
+            flex-direction: column;
+        }
+        ul li.completed {
+            text-decoration: line-through;
+            color: grey;
+        }
+        ul li button {
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            align-self: flex-end;
+        }
+        ul li p {
+            color: grey;
+            margin: 5px 0 0 0;
+        }
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+        button.add-btn {
+            width: 100%;
+            background: green;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-<h1>Hello, world!</h1>
-<p>This is a simple HTML page served by a Python web server.</p>
+<div class="container">
+    <h1>To-Do List</h1>
+    <div class="counter">
+        <p>Completed: <span id="completed-count">0</span> | Incomplete: <span id="incomplete-count">0</span></p>
+        <p>Percentage Completed: <span id="percentage-completed">0%</span></p>
+    </div>
+    <input type="text" id="new-task" placeholder="New task...">
+    <button class="add-btn" onclick="addTask()">Add Task</button>
+    <ul id="task-list"></ul>
+</div>
+<script>
+    function updateCounters() {
+        const tasks = document.querySelectorAll('#task-list li');
+        let completedCount = 0;
+        let incompleteCount = 0;
+        tasks.forEach(task => {
+            if (task.classList.contains('completed')) {
+                completedCount++;
+            } else {
+                incompleteCount++;
+            }
+        });
+        const totalTasks = tasks.length;
+        const percentageCompleted = totalTasks === 0 ? 0 : Math.round((completedCount / totalTasks) * 100);
+
+        document.getElementById('completed-count').textContent = completedCount;
+        document.getElementById('incomplete-count').textContent = incompleteCount;
+        document.getElementById('percentage-completed').textContent = percentageCompleted + '%';
+    }
+
+    function addTask() {
+        var taskInput = document.getElementById('new-task');
+        var taskText = taskInput.value;
+        if (taskText === '') {
+            alert('Please enter a task');
+            return;
+        }
+
+        var taskDescription = prompt("Please enter a description for the task:", "");
+        if (taskDescription === null || taskDescription === "") {
+            taskDescription = "No description";
+        }
+
+        fetch('/add_task', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ task: taskText, description: taskDescription })
+        })
+            .then(response => response.json())
+            .then(data => {
+                var li = document.createElement('li');
+
+                var taskTitle = document.createElement('span');
+                taskTitle.textContent = data.task;
+                li.appendChild(taskTitle);
+
+                var taskDescriptionElem = document.createElement('p');
+                taskDescriptionElem.textContent = data.description;
+                li.appendChild(taskDescriptionElem);
+
+                li.addEventListener('click', function() {
+                    li.classList.toggle('completed');
+                    updateCounters();
+                });
+
+                var deleteBtn = document.createElement('button');
+                deleteBtn.textContent = 'Delete';
+                deleteBtn.onclick = function() {
+                    li.remove();
+                    updateCounters();
+                };
+
+                li.appendChild(deleteBtn);
+                document.getElementById('task-list').appendChild(li);
+                taskInput.value = '';
+                updateCounters();
+            })
+            .catch(error => console.error('Error:', error));
+    }
+</script>
 </body>
 </html>
