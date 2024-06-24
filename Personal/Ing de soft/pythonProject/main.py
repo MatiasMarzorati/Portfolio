@@ -17,7 +17,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             self.end_headers()
 
     def serve_html(self):
-        html_file_path = "index.html"
+        html_file_path = "index.htmlsd"
         try:
             with open(html_file_path, 'rb') as file:
                 self._set_headers()
