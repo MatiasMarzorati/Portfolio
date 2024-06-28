@@ -25,7 +25,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         except FileNotFoundError:
             self.send_response(404)
             self.end_headers()
-            self.wfile.write(b"404 Not Fdfsdfound")
+            self.wfile.write(b"404 Not Found")
 
     def do_POST(self):
         if self.path == '/add_task':
